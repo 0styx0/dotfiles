@@ -1,0 +1,29 @@
+- defaults:
+    link:
+      relink: true,
+      create: true
+  link:
+    ~/.zshrc: .zshrc
+    ~/.vimrc: .vimrc
+    ~/.tmux.conf: .tmux.conf
+    ~/.xinitrc: .xinitrc
+    ~/.Xmodmap: .Xmodmap
+    ~/.xbindkeysrc: .xbindkeysrc
+    ~/.htmlhintrc: .htmlhintrc
+    ~/.gitignore_global: .gitignore_global
+    ~/.config/redshift.conf: .config/redshift.conf
+    ~/.config/i3/config: .config/i3/config
+    ~/.config/i3status/config: .config/i3status/config
+    ~/.config/nvim/init.vim: .config/nvim/init.vim
+    ~/.config/alacritty/alacritty.yml: .config/alacritty/alacritty.yml
+    ~/.vim/UltiSnips/javascript.snippets: .vim/UltiSnips/javascript.snippets
+    ~/.vim/UltiSnips/typescript.snippets: .vim/UltiSnips/typescript.snippets
+    ~/bin/vim-anywhere.sh: bin/vim-anywhere.sh
+    # the following aren't in use (replaced by zsh, i3, alacritty)
+    # ~/.bashrc: .bashrc
+    # ~/.bash_profile: .bash_profile
+    # ~/.config/polybar/config: .config/polybar/config
+    # ~/.config/kitty/kitty.conf: .config/kitty/kitty.conf
+- shell:
+  - mkdir ~/.npm-global
+  - mkdir ~/vim-tmp

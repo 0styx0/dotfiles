@@ -1,0 +1,27 @@
+
+snippet it "`it` testing block" b
+
+it(\`$1\`, () => {
+
+	${0:// TODO: write test}
+});
+endsnippet
+
+snippet test "`test` testing block" b
+
+test(\`$1\`, () => {
+
+	${0:// TODO: write test}
+});
+endsnippet
+
+snippet describe "`describe` testing block" b
+describe(\`${1:description}\`, () => {
+
+	it(\`$2\`, () => {
+
+		${0:// TODO: write test}
+	});
+});
+endsnippet
+
