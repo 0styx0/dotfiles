@@ -10,6 +10,7 @@
     ~/.Xmodmap: .Xmodmap
     ~/.xbindkeysrc: .xbindkeysrc
     ~/.htmlhintrc: .htmlhintrc
+    ~/tslint.json: tslint.json
     ~/.gitignore_global: .gitignore_global
     ~/.config/redshift.conf: .config/redshift.conf
     ~/.config/i3/config: .config/i3/config
