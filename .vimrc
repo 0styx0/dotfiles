@@ -334,6 +334,7 @@ set backupdir=~/vim-tmp
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 
+set nojoinspaces " for J
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set hlsearch
@@ -341,7 +342,6 @@ set autoread " if a file is changed outside of vim, reload it
 set hidden " can flip though buffers without saving them
 set noshowmode
 
-set clipboard=unnamedplus " easy copy/paste from regular clipboad
 set mouse=a " enable mouse
 
 set equalprg=
