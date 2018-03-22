@@ -109,11 +109,12 @@ if dein#load_state('~/.vim/dein/')
 
         " markdown {{{
             call dein#add('godlygeek/tabular')
-            call dein#add('plasticboy/vim-markdown') " requires tabular to be installed. Does a bunch of useful markdown stuff
+            " call dein#add('plasticboy/vim-markdown') " requires tabular to be installed. Does a bunch of useful markdown stuff
         " }}}
 
         " english {{{
             call dein#add('reedes/vim-pencil') " for plain text
+            call dein#add('vimwiki/vimwiki')
         " }}}
 
         " csv {{{
@@ -210,7 +211,15 @@ endif
 " }}}
 
 " vim-markdown {{{
-    let g:vim_markdown_follow_anchor = 1
+    " let g:vim_markdown_follow_anchor = 1
+" }}}
+
+" vimwiki {{{
+
+    let g:vimwiki_folding='exp'
+
+    " so links work, and auto generate table of contents
+    let g:vimwiki_list = [{'path': '~/Desktop/School/', 'auto_toc': 1}]
 " }}}
 
 " vim-auto-save {{{
@@ -227,12 +236,12 @@ endif
 
 
     let g:ale_fixers = {
-                \  'javascript': ['eslint'],
+                \  'javascript': ['eslint', 'prettier'],
                 \   'typescript': ['tslint']
                 \ }
 
     let g:ale_completion_enabled = 0 " must be off, otherwise interferes with nvim-typescript by making the completion menu flash for a second then disappear every time it appears - rendering completion completely unfunctional. BUG: Even with this off, still get weird bugs in completion menu, such as duplicate items and part of the list juts out (perhaps suggesting it still creates a list underneath nvim-completion-manager's
-    let g:ale_fix_on_save = 0 " messes too much up
+    let g:ale_fix_on_save = 1 " messes too much up
     let g:ale_open_list = 'on_save' " distracting to pop open while typing
 
     " close locationlist when buffer is closed
