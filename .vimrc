@@ -20,7 +20,9 @@ inoremap jk <Esc>l
 cnoremap jk <Esc>l
 
 nnoremap ; :
+vnoremap ; :
 nnoremap : ;
+vnoremap : ;
 
 " Q for formatting, don't use ex mode
 nnoremap Q gq
@@ -42,6 +44,9 @@ nnoremap <C-k> :ALEPreviousWrap<CR>
 " use tab for autocompletion
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" for php completion (since doesn't integrate with nvim-completion-manager)
+" inoremap cn <c-x><c-o>
 
 " LangClient mappings
 " nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
@@ -107,6 +112,10 @@ if dein#load_state('~/.vim/dein/')
             call dein#add('mattn/emmet-vim') " table>thead -> <table><thead></thead></table> (with proper formatting)
         " }}}
 
+        " php {{{
+
+        " }}}
+
         " markdown {{{
             call dein#add('godlygeek/tabular')
             " call dein#add('plasticboy/vim-markdown') " requires tabular to be installed. Does a bunch of useful markdown stuff
@@ -127,8 +136,13 @@ if dein#load_state('~/.vim/dein/')
         " movements {{{
             call dein#add('tpope/vim-commentary') " auto toggle comments
             call dein#add('jeetsukumaran/vim-indentwise') " easy moving to other lines by indentation
-            call dein#add('tpope/vim-surround') " adds useful motions - cs(' replaces surrounding () with ', for example
+            call dein#add('machakann/vim-sandwich') " adds useful motions for surrounding stuff. Example: saiw) surrounding adds in word parenthesis
             call dein#add('pseewald/vim-anyfold') " easy folding (can just za at start of function and it'll fold the entire thing
+
+            " call dein#add('majutsushi/tagbar')
+            " call dein#add('ludovicchabant/vim-gutentags')
+            call dein#add('joereynolds/gtags-scope')
+            call dein#add('jsfaint/gen_tags.vim')
         " }}}
 
         " looks {{{
@@ -143,7 +157,6 @@ if dein#load_state('~/.vim/dein/')
             call dein#add('SirVer/ultisnips') " snippet support
             call dein#add('honza/vim-snippets') " some actual snippets
 
-            " Doesn't seem to work
             call dein#add('roxma/LanguageServer-php-neovim',  {'build': 'composer install && composer run-script parse-stubs'})
             call dein#add('autozimu/LanguageClient-neovim', { 'rev': 'next', 'build': 'bash install.sh' })
 
@@ -151,12 +164,14 @@ if dein#load_state('~/.vim/dein/')
                 call dein#add('roxma/vim-hug-neovim-rpc')
             endif
 
-            " if there's an error along the lines of "Failed to load python3 host" or "nvim-completion-manager core dumped" run `pacman -S python-neovim --force`
-            call dein#add('roxma/nvim-completion-manager') " autocompletion
+            call dein#add('Shougo/deoplete.nvim', { 'build': ':UpdateRemotePlugins' })
+
+            " call dein#add('shawncplus/phpcomplete.vim')
         " }}}
 
         call dein#add('Shougo/EchoDoc') " can see function signature while calling it
         call dein#add('w0rp/ale') " linter with support for basically every language out there
+        call dein#add('tenfyzhong/CompleteParameter.vim')
 
     " }}}
 
@@ -174,12 +189,17 @@ endif
 
 """ Plugin settings """
 
-" gitgutter {{{
-    set updatetime=200 " for git-gutter
+" deoplete {{{
+    let g:deoplete#enable_at_startup = 1
 " }}}
 
+" shawncplus/phpcomplete.vim {{{
+
+" }}}
+
+
 " vim-better-whitespace {{{
-    autocmd BufEnter * EnableStripWhitespaceOnSave
+    autocmd FileType !markdown BufEnter * EnableStripWhitespaceOnSave
 " }}}
 
 " airline {{{
@@ -210,16 +230,13 @@ endif
     let g:indentLine_char='¦'
 " }}}
 
-" vim-markdown {{{
-    " let g:vim_markdown_follow_anchor = 1
-" }}}
-
 " vimwiki {{{
 
     let g:vimwiki_folding='exp'
+    let g:vimwiki_table_mappings=0 " if 1, very good for tables but remaps tab
 
     " so links work, and auto generate table of contents
-    let g:vimwiki_list = [{'path': '~/Desktop/School/', 'auto_toc': 1}]
+    let g:vimwiki_list = [{'path': '~/ownCloud/Documents/School/', 'auto_toc': 0, 'syntax': 'markdown', 'ext': '.md'}]
 " }}}
 
 " vim-auto-save {{{
@@ -264,10 +281,15 @@ endif
 
 " LanguageClient {{{
 
+    augroup LanguageServer
+      autocmd FileType php let g:LanguageClient_autoStart = 1
+      autocmd FileType php nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+      autocmd FileType php nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+    augroup END
+
     let g:LanguageClient_autoStart = 0 " produces duplicate, subpar completions (doesn't show function signature like nvim-typescript does). Has useful commands though
     let g:LanguageClient_diagnosticsList="Location"
     let g:LanguageClient_diagnosticsEnable=1
-    autocmd FileType php LanguageClientStart
 
     " If enable this, get useless and duplicate info (seems like the useless part is because of shortmess+=c) compared to nvim_typescript.
     " Also seems to glitch the completion menu by having part of of it jut out -
@@ -278,7 +300,7 @@ endif
                     \ 'javascript': ['javascript-typescript-stdio'],
                     \ 'typescript': ['javascript-typescript-stdio'],
                     \ 'javascript.jsx': ['javascript-typescript-stdio'],
-                    \ 'typescript.tsx': ['javascript-typescript-stdio']
+                    \ 'typescript.tsx': ['javascript-typescript-stdio'],
                     \ }
     else
         echo "Run npm install -g javascript-typescript-langserver to enable\n"
@@ -366,6 +388,10 @@ augroup spell
     autocmd FileType text,markdown set spell
 augroup END
 
+augroup code
+  autocmd FileType !text,!markdown set expandtab
+augroup END
+
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -391,7 +417,6 @@ else
 endif
 
 set tabstop=4
-set expandtab
 set shiftwidth=4
 set linebreak
 set conceallevel=2 " so markdown *this* look italicized without showing the asterisks when cursor's on a different line
@@ -416,6 +441,7 @@ set scrolloff=9999 " keep cursor at the center of the screen
 set termguicolors " enable True color
 
 " saved macros {{{
-  let @q = 'i- *Q*: '
-  let @a = 'i*A*: '
+  let @q = 'o_Q_: '
+  let @a = 'o_A_: '
+  let @i = '^la_A_'
 " }}}
