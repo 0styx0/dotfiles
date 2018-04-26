@@ -15,6 +15,8 @@ endif
 nnoremap j gj
 nnoremap k gk
 nnoremap <Leader> ,
+nnoremap > >>
+nnoremap < <<
 
 inoremap jk <Esc>l
 cnoremap jk <Esc>l
@@ -45,17 +47,8 @@ nnoremap <C-k> :ALEPreviousWrap<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" for php completion (since doesn't integrate with nvim-completion-manager)
-" inoremap cn <c-x><c-o>
-
-" LangClient mappings
-" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-
-" approximate functionality of the above LangClient mappings (a little worse,
-" but LangClient messes up autocomplete too much to enable for now
-nnoremap <silent> K :TSType<CR>
-nnoremap <silent> gd :TSDoc<CR>
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 
 
 """""""""""""""""""""""""""
@@ -257,8 +250,8 @@ endif
                 \   'typescript': ['tslint']
                 \ }
 
-    let g:ale_completion_enabled = 0 " must be off, otherwise interferes with nvim-typescript by making the completion menu flash for a second then disappear every time it appears - rendering completion completely unfunctional. BUG: Even with this off, still get weird bugs in completion menu, such as duplicate items and part of the list juts out (perhaps suggesting it still creates a list underneath nvim-completion-manager's
-    let g:ale_fix_on_save = 1 " messes too much up
+    let g:ale_completion_enabled = 1
+    let g:ale_fix_on_save = 1 
     let g:ale_open_list = 'on_save' " distracting to pop open while typing
 
     " close locationlist when buffer is closed
@@ -281,13 +274,7 @@ endif
 
 " LanguageClient {{{
 
-    augroup LanguageServer
-      autocmd FileType php let g:LanguageClient_autoStart = 1
-      autocmd FileType php nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-      autocmd FileType php nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-    augroup END
-
-    let g:LanguageClient_autoStart = 0 " produces duplicate, subpar completions (doesn't show function signature like nvim-typescript does). Has useful commands though
+    let g:LanguageClient_autoStart = 1 " produces duplicate, subpar completions (doesn't show function signature like nvim-typescript does). Has useful commands though
     let g:LanguageClient_diagnosticsList="Location"
     let g:LanguageClient_diagnosticsEnable=1
 
