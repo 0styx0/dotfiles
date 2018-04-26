@@ -1,12 +1,12 @@
 
-if [ `-s ~/.Xmodmap` ]; then
+if [ -s ~/.Xmodmap ]; then
     # Load custom keyboard key bindings
 	xmodmap ~/.Xmodmap
 fi;
 
 redshift &
 
-nm-applet --no-agent &
+nm-applet &
 
 # lock screen after 5 minutes inactivity or when mouse in bottom right corner for 1 second
 xautolock -time 5 -locker slock -nowlocker slock -detectsleep -corners 000+ -cornerdelay 1 &
@@ -51,4 +51,4 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 xbindkeys
 
 # exec awesome
-exec i3 -V >> ~/i3log/$(date +'%F-%k-%M-%S') 2>&1
+exec i3 -V # >> ~/i3log/$(date +'%F-%k-%M-%S') 2>&1
