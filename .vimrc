@@ -134,8 +134,8 @@ if dein#load_state('~/.vim/dein/')
 
             " call dein#add('majutsushi/tagbar')
             " call dein#add('ludovicchabant/vim-gutentags')
-            call dein#add('joereynolds/gtags-scope')
-            call dein#add('jsfaint/gen_tags.vim')
+            " call dein#add('joereynolds/gtags-scope')
+            " call dein#add('jsfaint/gen_tags.vim')
         " }}}
 
         " looks {{{
@@ -157,8 +157,10 @@ if dein#load_state('~/.vim/dein/')
                 call dein#add('roxma/vim-hug-neovim-rpc')
             endif
 
-            call dein#add('Shougo/deoplete.nvim', { 'build': ':UpdateRemotePlugins' })
+            call dein#add('Shougo/deoplete.nvim' )
 
+            call dein#add('phpactor/phpactor',  {'build': 'composer install', 'ft': 'php'})
+            call dein#add('kristijanhusak/deoplete-phpactor')
             " call dein#add('shawncplus/phpcomplete.vim')
         " }}}
 
@@ -229,7 +231,7 @@ endif
     let g:vimwiki_table_mappings=0 " if 1, very good for tables but remaps tab
 
     " so links work, and auto generate table of contents
-    let g:vimwiki_list = [{'path': '~/ownCloud/Documents/School/', 'auto_toc': 0, 'syntax': 'markdown', 'ext': '.md'}]
+    let g:vimwiki_list = [{'path': '~/Nextcloud/Documents/School/', 'auto_toc': 0, 'syntax': 'markdown', 'ext': '.md'}]
 " }}}
 
 " vim-auto-save {{{
