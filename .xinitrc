@@ -8,8 +8,11 @@ redshift &
 
 nm-applet &
 
-# lock screen after 5 minutes inactivity or when mouse in bottom right corner for 1 second
-xautolock -time 5 -locker slock -nowlocker slock -detectsleep -corners 000+ -cornerdelay 1 &
+# lock on screen close
+xss-lock -- i3lock -n &
+
+# lock after 3 minutes
+xautolock -time 3 -locker "i3lock" &
 
 # # mostly copied from default
 userresources=$HOME/.Xresources
