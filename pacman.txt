@@ -1,0 +1,17 @@
+redshift
+firejail
+keepassxc
+the_silver_searcher
+xpad
+nodejs
+npm
+nextcloud-client
+nemo
+pandoc
+polkit
+screenfetch
+tmux
+tree
+ufw
+cups
+scp

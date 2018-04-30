@@ -1,0 +1,5 @@
+- For PIA, see https://helpdesk.privateinternetaccess.com/hc/en-us/articles/219438247-Installing-OpenVPN-PIA-on-Linux
+	- The tcp worked
+	- Let regular user access it by doing 
+		- `sudo visudo`
+		- `davidm ALL=(ALL:ALL) /usr/bin/openvpn`
