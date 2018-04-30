@@ -115,6 +115,8 @@ alias wifi-test="ping archlinux.org";
 
 alias restart-vpn="sudo pkill openvpn; cd /etc/openvpn/pia; sudo openvpn US\ East.ovpn &; cd -";
 
+alias i3lock="i3lock -c 000000";
+
 # open all unstaged files in buffers
 alias vim-git='vim $(git status --short | awk " { print $2 } ")';
 alias vim=nvim

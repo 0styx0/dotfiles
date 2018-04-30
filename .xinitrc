@@ -9,10 +9,10 @@ redshift &
 nm-applet &
 
 # lock on screen close
-xss-lock -- i3lock -n &
+xss-lock -- i3lock -c 000000 -n &
 
 # lock after 3 minutes
-xautolock -time 3 -locker "i3lock" &
+xautolock -time 3 -locker "i3lock -c 000000" &
 
 # # mostly copied from default
 userresources=$HOME/.Xresources
