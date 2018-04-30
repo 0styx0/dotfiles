@@ -1,0 +1,28 @@
+{
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "editor.fontSize": 18,
+    "files.autoSave": "afterDelay",
+    "vim.easymotion": true,
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/bin/nvim",
+    "vim.leader": ",",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.otherModesKeyBindingsNonRecursive": [
+
+        {
+            "before": [";"],
+            "after": [":"]
+        },
+        {
+            "before": [">", ">"],
+            "after": [">"]
+        }
+    ],
+    "vim.statusBarColorControl": true
+}
