@@ -17,9 +17,10 @@
     ~/.config/i3status/config: .config/i3status/config
     ~/.config/nvim/init.vim: .config/nvim/init.vim
     ~/.config/alacritty/alacritty.yml: .config/alacritty/alacritty.yml
+    ~/.config/Code/User/settings.json: .config/Code/User/settings.json
     ~/.vim/UltiSnips/javascript.snippets: .vim/UltiSnips/javascript.snippets
     ~/.vim/UltiSnips/typescript.snippets: .vim/UltiSnips/typescript.snippets
-    ~/bin/vim-anywhere.sh: bin/vim-anywhere.sh
+    ~/bin/vim-anywhere.sh: bin/vim-anywhere.sh,
     # the following aren't in use (replaced by zsh, i3, alacritty)
     # ~/.bashrc: .bashrc
     # ~/.bash_profile: .bash_profile
