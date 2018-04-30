@@ -1,11 +1,11 @@
 
-[[ -z "$TMUX" ]] && exec tmux
+# [[ -z "$TMUX" ]] && exec tmux
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$HOME/.npm-global/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/dovidm/.oh-my-zsh
+  export ZSH=/home/davidm/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -107,23 +107,13 @@ infoWithLess() {
 
 alias info=infoWithLess;
 
-learn() {
-
-    file="$(find $1 -maxdepth 1 -regex '.*test[0-9].txt' | sort | tail -1)";
-
-	if [ -r "${file}" ]; then
-		vim "${file}" < `tty` > `tty`
-	fi
-
-}
-
 alias learn=learn;
 
 alias search="w3m duckduckgo.com";
 
 alias wifi-test="ping archlinux.org";
 
-alias restart-vpn="sudo pkill -9 openvpn; sudo systemctl restart pia@US_New_York_City";
+alias restart-vpn="sudo pkill openvpn; cd /etc/openvpn/pia; sudo openvpn US\ East.ovpn &; cd -";
 
 # open all unstaged files in buffers
 alias vim-git='vim $(git status --short | awk " { print $2 } ")';
@@ -137,5 +127,5 @@ export TERM_APP=alacritty
 export NPM_CONFIG_PREFIX=~/.npm-global # prevent permission errors (https://docs.npmjs.com/getting-started/fixing-npm-permissions)
 export PATH=~/.npm-global/bin:$PATH
 
-source /etc/profile.d/undistract-me.sh
+# source /etc/profile.d/undistract-me.sh
 
